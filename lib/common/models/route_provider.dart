@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:todolist/user/views/sign_in/cubits/sign_in_cubit.dart';
+import 'package:todolist/user/views/sign_in/views/pages/sign_in_page.dart';
 
 import '/common/views/pages/error_page.dart';
 import '/common/views/pages/primary_page.dart';
-import '/task/models/task.dart';
-import '/task/views/task_detail/task_detail_model.dart';
-import '/task/views/task_list/task_list_model.dart';
-import '/user/views/change_password/change_password_model.dart';
-import '/user/views/forgot_password/forgot_password_model.dart';
 import '/user/views/my_profile/my_profile_model.dart';
-import '/user/views/sign_in/sign_in_model.dart';
 import '/user/views/sign_up/sign_up_model.dart';
 
 class RouteProvider {
@@ -29,18 +25,13 @@ class RouteProvider {
   static const String taskEdit = '/task_edit';
   static const String taskList = '/task_list';
 
-  static late RouteSettings settings;
-
-  static Route generate() {
+  static Route generate(RouteSettings settings) {
     return MaterialPageRoute(
-      builder: (context) =>
-          {
-            // Common
+      builder: (context) => {
             primary: const PrimaryPage(),
-            // User
             signIn: BlocProvider(
               create: (_) => SignInCubit(),
-              child: SignInPage(),
+              child: const SignInPage(),
             ),
             signUp: BlocProvider(
               create: (_) => SignUpCubit(),
@@ -50,35 +41,7 @@ class RouteProvider {
               create: (_) => MyProfileCubit(),
               child: const MyProfilePage(),
             ),
-            changePassword: BlocProvider(
-              create: (_) => ChangePasswordCubit(),
-              child: ChangePasswordDialog(),
-            ),
-            forgotPassword: BlocProvider(
-              create: (_) => ForgotPasswordCubit(),
-              child: const ForgotPasswordDialog(),
-            ),
-            editProfile: BlocProvider(
-              create: (_) => MyProfileCubit(),
-              child: const MyProfilePage(),
-            ),
-            // Task
-            taskAdd: BlocProvider(
-              create: (_) => TaskDetailCubit(),
-              child: TaskDetailDialog(),
-            ),
-            taskEdit: BlocProvider(
-              create: (_) => TaskDetailCubit(
-                initialTask: settings.arguments as Task?,
-              ),
-              child: TaskDetailDialog(),
-            ),
-            taskList: BlocProvider(
-              create: (_) => TaskListCubit(),
-              child: const TaskListPage(),
-            ),
-          }[settings.name] ??
-          const ErrorPage(),
+          }[settings.name] ?? const ErrorPage(),
     );
   }
 

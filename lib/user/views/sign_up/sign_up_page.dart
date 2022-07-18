@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../common/models/route_provider.dart';
 
 import '/common/exports/utils.dart';
+import '/common/models/route_provider.dart';
 import '/user/models/gender.dart';
 import 'sign_up_model.dart';
 
 class SignUpPage extends StatelessWidget {
-  final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _repasswordController = TextEditingController();
-  final _nameController = TextEditingController();
-  final _phoneNumberController = TextEditingController();
 
   SignUpPage({Key? key}) : super(key: key);
 
@@ -33,7 +30,7 @@ class SignUpPage extends StatelessWidget {
                   children: [
                     // App logo
                     const FlutterLogo(),
-                    const SizedBox(height: 8),
+                    const SizedBox(height: 4),
                     // App label
                     Text(
                       'Sign up',
@@ -43,10 +40,17 @@ class SignUpPage extends StatelessWidget {
                     // Name input
                     TextField(
                       keyboardType: TextInputType.name,
-                      controller: _nameController,
                       decoration: InputDecoration(
                         icon: const Icon(Icons.account_box),
                         border: const OutlineInputBorder(),
+                        suffixIcon: state.nameInput.text.isNull
+                            ? null
+                            : !state.nameInput.invalid
+                                ? const Icon(Icons.check)
+                                : const Icon(
+                                    Icons.close,
+                                    color: Colors.red,
+                                  ),
                         labelText: 'Name',
                         errorText: state.nameInput.errorText,
                       ),
@@ -54,7 +58,7 @@ class SignUpPage extends StatelessWidget {
                         context.read<SignUpCubit>().onNameChanged(text);
                       },
                     ),
-                    const SizedBox(height: 8),
+                    const SizedBox(height: 12),
                     // Gender
                     TextField(
                       readOnly: true,
@@ -97,7 +101,7 @@ class SignUpPage extends StatelessWidget {
                         );
                       },
                     ),
-                    const SizedBox(height: 8),
+                    const SizedBox(height: 12),
                     // Birthday
                     TextField(
                       readOnly: true,
@@ -127,14 +131,21 @@ class SignUpPage extends StatelessWidget {
                         });
                       },
                     ),
-                    const SizedBox(height: 8),
+                    const SizedBox(height: 12),
                     // Phone number
                     TextField(
                       keyboardType: TextInputType.number,
-                      controller: _phoneNumberController,
                       decoration: InputDecoration(
                         icon: const Icon(Icons.phone),
                         border: const OutlineInputBorder(),
+                        suffixIcon: state.phoneNumberInput.text.isNull
+                            ? null
+                            : !state.phoneNumberInput.invalid
+                                ? const Icon(Icons.check)
+                                : const Icon(
+                                    Icons.close,
+                                    color: Colors.red,
+                                  ),
                         labelText: 'Phone number',
                         errorText: state.phoneNumberInput.errorText,
                       ),
@@ -142,14 +153,21 @@ class SignUpPage extends StatelessWidget {
                         context.read<SignUpCubit>().onPhoneNumberChanged(text);
                       },
                     ),
-                    const SizedBox(height: 8),
+                    const SizedBox(height: 12),
                     // Email
                     TextField(
                       keyboardType: TextInputType.emailAddress,
-                      controller: _emailController,
                       decoration: InputDecoration(
                         icon: const Icon(Icons.email),
                         border: const OutlineInputBorder(),
+                        suffixIcon: state.emailInput.text.isNull
+                            ? null
+                            : !state.emailInput.invalid
+                                ? const Icon(Icons.check)
+                                : const Icon(
+                                    Icons.close,
+                                    color: Colors.red,
+                                  ),
                         labelText: 'Email',
                         errorText: state.emailInput.errorText,
                       ),
@@ -165,6 +183,14 @@ class SignUpPage extends StatelessWidget {
                       decoration: InputDecoration(
                         icon: const Icon(Icons.password),
                         border: const OutlineInputBorder(),
+                        suffixIcon: state.passwordInput.text.isNull
+                            ? null
+                            : !state.passwordInput.invalid
+                                ? const Icon(Icons.check)
+                                : const Icon(
+                                    Icons.close,
+                                    color: Colors.red,
+                                  ),
                         labelText: 'Password',
                         errorText: state.passwordInput.errorText,
                       ),
@@ -173,14 +199,22 @@ class SignUpPage extends StatelessWidget {
                             text, _repasswordController.text);
                       },
                     ),
-                    const SizedBox(height: 8),
-                    // Re-password input
+                    const SizedBox(height: 12),
+                    // Confirm new password
                     TextField(
                       controller: _repasswordController,
                       decoration: InputDecoration(
                         icon: const Icon(Icons.password_sharp),
                         border: const OutlineInputBorder(),
-                        labelText: 'Re-password',
+                        suffixIcon: state.repasswordInput.text.isNull
+                            ? null
+                            : !state.repasswordInput.invalid
+                                ? const Icon(Icons.check)
+                                : const Icon(
+                                    Icons.close,
+                                    color: Colors.red,
+                                  ),
+                        labelText: 'Confirm new password',
                         errorText: state.repasswordInput.errorText,
                       ),
                       onChanged: (text) {
@@ -189,7 +223,7 @@ class SignUpPage extends StatelessWidget {
                             .onPasswordChanged(_passwordController.text, text);
                       },
                     ),
-                    const SizedBox(height: 16),
+                    const SizedBox(height: 12),
                     // Action buttons
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,

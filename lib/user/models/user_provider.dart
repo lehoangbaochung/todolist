@@ -57,7 +57,7 @@ class UserProvider {
 
   static void edit(User user) {
     box.put(
-      instance!.email,
+      instance?.email,
       user,
     );
   }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '/common/models/hive_provider.dart';
 import '/user/models/user.dart';
 
 import '/common/exports/utils.dart';

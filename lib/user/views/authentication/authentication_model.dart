@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '/user/models/gender.dart';
@@ -22,6 +23,10 @@ class BirthdayInput extends AuthenticationInput {
   BirthdayInput([this.data]) : super(data?.toLocalString());
 }
 
+mixin EmailInputEvent {
+  void onEmailChanged(String text);
+}
+
 class EmailInput extends AuthenticationInput {
   EmailInput([String? text]) : super(text?.trim());
 
@@ -33,6 +38,28 @@ class EmailInput extends AuthenticationInput {
   @override
   String? get errorText =>
       !invalid ? super.errorText : 'This email address is not valid';
+
+  Widget? get widget => TextField(
+        keyboardType: TextInputType.emailAddress,
+        controller: TextEditingController(text: text),
+        decoration: InputDecoration(
+          icon: const Icon(Icons.email),
+          border: const OutlineInputBorder(),
+          suffixIcon: text.isNull
+              ? null
+              : !invalid
+                  ? const Icon(Icons.check)
+                  : const Icon(
+                      Icons.close,
+                      color: Colors.red,
+                    ),
+          labelText: 'Email',
+          errorText: errorText,
+        ),
+        onChanged: (text) {
+          //EmailInputEvent().onEmailChanged(text);
+        },
+      );
 }
 
 class GenderInput extends AuthenticationInput {

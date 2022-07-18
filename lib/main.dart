@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'common/models/route_provider.dart';
-import '/common/models/hive_provider.dart';
-import '/common/views/themes/theme_cubit.dart';
-import '/common/views/themes/theme_state.dart';
+import 'common/models/hive_provider.dart';
+import 'common/views/themes/theme_cubit.dart';
+import 'common/views/themes/theme_state.dart';
 
 void main() async {
   await HiveProvider.init();
@@ -19,10 +19,7 @@ void main() async {
             theme: state.themeData,
             debugShowCheckedModeBanner: false,
             initialRoute: RouteProvider.signIn,
-            onGenerateRoute: (settings) {
-              RouteProvider.settings = settings;
-              return RouteProvider.generate();
-            },
+            onGenerateRoute: (settings) => RouteProvider.generate(settings),
           );
         },
       ),

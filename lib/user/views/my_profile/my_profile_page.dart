@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:todolist/user/views/change_password/change_password_model.dart';
+import 'package:todolist/user/views/edit_profile/edit_profile_model.dart';
 
 import '/common/exports/utils.dart';
 import '/common/models/route_provider.dart';
@@ -138,9 +140,15 @@ class MyProfilePage extends StatelessWidget {
                       OutlinedButton(
                         child: const Text('Change password'),
                         onPressed: () {
-                          RouteProvider.show(
-                            context,
-                            RouteProvider.changePassword,
+                          showModalBottomSheet<void>(
+                            context: context,
+                            builder: (_) => BlocProvider(
+                              create: (_) => ChangePasswordCubit(),
+                              child: ChangePasswordDialog(),
+                            ),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
                           );
                         },
                       ),
@@ -148,9 +156,15 @@ class MyProfilePage extends StatelessWidget {
                       ElevatedButton(
                         child: const Text('Edit profile'),
                         onPressed: () {
-                          RouteProvider.show(
-                            context,
-                            RouteProvider.editProfile,
+                          showModalBottomSheet<void>(
+                            context: context,
+                            builder: (_) => BlocProvider(
+                              create: (_) => EditProfileCubit(),
+                              child: const EditProfileDialog(),
+                            ),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
                           );
                         },
                       ),
