@@ -1,10 +1,11 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:todolist/user/views/sign_in/views/widgets/text_fields/email_text_field.dart';
-import '../views/widgets/text_fields/password_text_field.dart';
 
 import '/common/utils/string_utils.dart';
 import '/user/models/user.dart';
+import '/user/views/sign_in/widgets/text_fields/email_text_field.dart';
+import '/user/views/sign_in/widgets/text_fields/password_text_field.dart';
 import 'sign_in_state.dart';
+import 'sign_in_status.dart';
 
 class SignInCubit extends Cubit<SignInState> {
   SignInCubit() : super(SignInState.initial());
@@ -17,6 +18,7 @@ class SignInCubit extends Cubit<SignInState> {
         state.copyWith(
           emailTextField: EmailTextField(text: StringUtils.empty),
           passwordTextField: PasswordTextField(data: StringUtils.empty),
+          signInStatus: SignInStatus.failure,
         ),
       );
       return;
@@ -55,7 +57,7 @@ class SignInCubit extends Cubit<SignInState> {
         passwordTextField: state.passwordTextField.copyWith(
           data: text,
         ),
-        signInStatus: SignInStatus.success,
+        signInStatus: SignInStatus.initial,
       ),
     );
   }

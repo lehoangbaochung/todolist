@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:todolist/user/views/sign_in/cubits/sign_in_state.dart';
+import 'package:todolist/user/views/sign_in/cubits/sign_in_status.dart';
 
 class SignInText extends StatelessWidget {
   final SignInStatus status;

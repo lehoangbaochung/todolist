@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:todolist/user/views/sign_in/cubits/sign_in_cubit.dart';
-import 'package:todolist/user/views/sign_in/cubits/sign_in_state.dart';
+
+import '/user/views/sign_in/cubits/sign_in_cubit.dart';
+import '/user/views/sign_in/cubits/sign_in_state.dart';
+import '/user/views/sign_in/cubits/sign_in_status.dart';
 
 class SignInPage extends StatelessWidget {
   const SignInPage({Key? key}) : super(key: key);
@@ -30,7 +32,12 @@ class SignInPage extends StatelessWidget {
                   const SizedBox(height: 8),
                   state.passwordTextField,
                   const SizedBox(height: 8),
-                  state.signInText,
+                  Visibility(
+                    visible: state.signInStatus != SignInStatus.initial,
+                    child: Text(
+                      state.signInStatus.toString(),
+                    ),
+                  ),
                   const SizedBox(height: 8),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,

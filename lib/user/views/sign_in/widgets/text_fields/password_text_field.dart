@@ -35,9 +35,10 @@ class PasswordTextField extends StatelessWidget {
         border: const OutlineInputBorder(),
         suffixIcon: IconButton(
           tooltip: 'Toggle password',
-          icon: Icon(!obscureText ? Icons.visibility : Icons.visibility_off),
-          onPressed: () =>
-              context.read<SignInCubit>().onPasswordChecked(!obscureText),
+          icon: Icon(obscureText ? Icons.visibility : Icons.visibility_off),
+          onPressed: () {
+            context.read<SignInCubit>().onPasswordChecked(!obscureText);
+          },
         ),
         labelText: 'Password',
         errorText: !invalid ? null : 'Password must be at least 6 characters',

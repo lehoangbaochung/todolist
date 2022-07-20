@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '/user/views/sign_in/cubits/sign_in_cubit.dart';
+import '/user/views/sign_up/cubits/sign_up_cubit.dart';
 
 class EmailTextField extends StatelessWidget {
-  final String? text;
+  final String? data;
 
   const EmailTextField({
     Key? key,
-    this.text,
+    this.data,
   }) : super(key: key);
 
   bool get invalid =>
-      text == null ? false : !text!.contains('@') || !text!.contains('.');
+      data == null || !data!.contains('@') || !data!.contains('.');
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class EmailTextField extends StatelessWidget {
       decoration: InputDecoration(
         icon: const Icon(Icons.email),
         border: const OutlineInputBorder(),
-        suffixIcon: text == null
+        suffixIcon: data == null
             ? null
             : !invalid
                 ? const Icon(Icons.check)
@@ -30,10 +30,14 @@ class EmailTextField extends StatelessWidget {
                     color: Colors.red,
                   ),
         labelText: 'Email',
-        errorText: !invalid ? null : 'This email address is not valid',
+        errorText: data == null
+            ? null
+            : !invalid
+                ? null
+                : 'This email address is not valid',
       ),
       onChanged: (text) {
-        context.read<SignInCubit>().onEmailChanged(text);
+        context.read<SignUpCubit>().onEmailChanged(text);
       },
     );
   }
