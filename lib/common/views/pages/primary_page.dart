@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:todolist/common/exports/app_cubit.dart';
 import 'package:todolist/common/models/route_provider.dart';
+import 'package:todolist/common/utils/string_utils.dart';
 
-import '/common/exports/utils.dart';
-import '/common/views/themes/theme_cubit.dart';
 import '/task/views/task_list/task_list_model.dart';
 
 class PrimaryPage extends StatelessWidget {
@@ -47,15 +47,58 @@ class PrimaryPage extends StatelessWidget {
             ),
             leading: IconButton(
               onPressed: () {
-                final themeCubit = context.read<ThemeCubit>()..toggle();
-                context.showSnackBar(
-                  '${themeCubit.state.lightMode ? 'Light' : 'Dark'} mode is on.',
+                showDialog(
+                  context: context,
+                  builder: (_) {
+                    return AlertDialog(
+                      title: const Text('Settings'),
+                      content: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          ListTile(
+                            title: const Text('Theme'),
+                            trailing: DropdownButton<AppTheme>(
+                              value: context.read<AppCubit>().state.theme,
+                              onChanged: (theme) {
+                                context.read<AppCubit>().onThemeChanged(theme!);
+                              },
+                              items: AppTheme.values
+                                  .map(
+                                    (theme) => DropdownMenuItem<AppTheme>(
+                                      value: theme,
+                                      child: Text(theme.name.toUpperCaseAt(0)),
+                                    ),
+                                  )
+                                  .toList(),
+                            ),
+                          ),
+                          ListTile(
+                            title: const Text('Language'),
+                            trailing: DropdownButton<AppLocale>(
+                              value: context.read<AppCubit>().state.locale,
+                              onChanged: (locale) {
+                                context
+                                    .read<AppCubit>()
+                                    .onLocaleChanged(locale!);
+                              },
+                              items: AppLocale.values
+                                  .map(
+                                    (locale) => DropdownMenuItem<AppLocale>(
+                                      value: locale,
+                                      child: Text(locale.toString()),
+                                    ),
+                                  )
+                                  .toList(),
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
                 );
               },
-              tooltip: 'Toggle themes',
-              icon: context.watch<ThemeCubit>().state.lightMode
-                  ? const Icon(Icons.dark_mode)
-                  : const Icon(Icons.light_mode),
+              tooltip: 'Settings',
+              icon: const Icon(Icons.settings),
             ),
             actions: [
               IconButton(

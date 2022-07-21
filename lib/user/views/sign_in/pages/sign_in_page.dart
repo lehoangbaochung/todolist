@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '/common/exports/localization.dart';
+
 
 import '/user/views/sign_in/cubits/sign_in_cubit.dart';
 import '/user/views/sign_in/cubits/sign_in_state.dart';
@@ -24,7 +26,7 @@ class SignInPage extends StatelessWidget {
                   const FlutterLogo(size: 120),
                   const SizedBox(height: 8),
                   Text(
-                    'Welcome to To-do list!',
+                    '${localizations.get(AppLocalizations.signInGreeting)}',
                     style: Theme.of(context).textTheme.headline5,
                   ),
                   const SizedBox(height: 16),
@@ -41,7 +43,7 @@ class SignInPage extends StatelessWidget {
                   const SizedBox(height: 8),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children:[
+                    children: [
                       state.signUpButton,
                       const SizedBox(width: 8),
                       state.signInButton,

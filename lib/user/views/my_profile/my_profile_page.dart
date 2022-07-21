@@ -191,6 +191,7 @@ class MyProfilePage extends StatelessWidget {
                                   TextButton(
                                     child: const Text('Delete'),
                                     onPressed: () {
+                                      RouteProvider.hide(context);
                                       RouteProvider.show(
                                         context,
                                         RouteProvider.signIn,

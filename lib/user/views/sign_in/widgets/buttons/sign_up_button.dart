@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '/common/models/language/language.dart';
 import '/common/models/route_provider.dart';
 
 class SignUpButton extends StatelessWidget {
@@ -8,7 +9,7 @@ class SignUpButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return OutlinedButton(
-      child: const Text('Sign up'),
+      child: Text('${Language.dictionary[LanguageKey.signUp]}'),
       onPressed: () {
         RouteProvider.hide(context);
         RouteProvider.show(context, RouteProvider.signUp);

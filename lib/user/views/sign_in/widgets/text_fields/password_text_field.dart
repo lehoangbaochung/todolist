@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '/common/models/language/language.dart';
 import '/user/views/sign_in/cubits/sign_in_cubit.dart';
 
 class PasswordTextField extends StatelessWidget {
@@ -40,7 +41,7 @@ class PasswordTextField extends StatelessWidget {
             context.read<SignInCubit>().onPasswordChecked(!obscureText);
           },
         ),
-        labelText: 'Password',
+        labelText: '${Language.dictionary[LanguageKey.password]}',
         errorText: !invalid ? null : 'Password must be at least 6 characters',
       ),
       onChanged: (text) {
