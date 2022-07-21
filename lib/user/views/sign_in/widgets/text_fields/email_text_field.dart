@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:todolist/common/models/language/language.dart';
+import 'package:todolist/common/exports/localization.dart';
 
 import '/user/views/sign_in/cubits/sign_in_cubit.dart';
 
@@ -22,8 +22,8 @@ class EmailTextField extends StatelessWidget {
       decoration: InputDecoration(
         icon: const Icon(Icons.email),
         border: const OutlineInputBorder(),
-        labelText: '${Language.dictionary[LanguageKey.email]}',
-        errorText: !invalid ? null : 'This email address is not valid',
+        labelText: AppLocalizations.get(AppLocalizations.email),
+        errorText: !invalid ? null : AppLocalizations.get(AppLocalizations.emailInvalid),
       ),
       onChanged: (text) {
         context.read<SignInCubit>().onEmailChanged(text);

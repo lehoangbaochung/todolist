@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:todolist/common/exports/localization.dart';
 
-import '/common/models/language/language.dart';
 import '/user/views/sign_in/cubits/sign_in_cubit.dart';
 
 class PasswordTextField extends StatelessWidget {
@@ -35,14 +35,18 @@ class PasswordTextField extends StatelessWidget {
         icon: const Icon(Icons.password),
         border: const OutlineInputBorder(),
         suffixIcon: IconButton(
-          tooltip: 'Toggle password',
+          tooltip: obscureText
+              ? AppLocalizations.get(AppLocalizations.showPassword)
+              : AppLocalizations.get(AppLocalizations.hidePassword),
           icon: Icon(obscureText ? Icons.visibility : Icons.visibility_off),
           onPressed: () {
             context.read<SignInCubit>().onPasswordChecked(!obscureText);
           },
         ),
-        labelText: '${Language.dictionary[LanguageKey.password]}',
-        errorText: !invalid ? null : 'Password must be at least 6 characters',
+        labelText: AppLocalizations.get(AppLocalizations.password),
+        errorText: !invalid
+            ? null
+            : AppLocalizations.get(AppLocalizations.passwordInvalid),
       ),
       onChanged: (text) {
         context.read<SignInCubit>().onPasswordChanged(text);

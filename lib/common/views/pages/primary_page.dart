@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todolist/common/exports/app_cubit.dart';
+import 'package:todolist/common/exports/localization.dart';
 import 'package:todolist/common/models/route_provider.dart';
-import 'package:todolist/common/utils/string_utils.dart';
 
 import '/task/views/task_list/task_list_model.dart';
 
@@ -11,28 +11,29 @@ class PrimaryPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Build tabs
-    final Map<Tab, Widget> tabs = {
-      const Tab(
-        text: 'Notes',
-        icon: Icon(Icons.note_alt),
-      ): const Center(
+    final tabs = {
+      Tab(
+        text: AppLocalizations.get(
+          AppLocalizations.notes,
+        ),
+        icon: const Icon(Icons.note_alt),
+      ): Center(
         child: Text(
-          'Empty',
-          style: TextStyle(
+          AppLocalizations.get(
+            AppLocalizations.empty,
+          ),
+          style: const TextStyle(
             fontSize: 18,
           ),
         ),
       ),
-      const Tab(
-        text: 'Tasks',
-        icon: Icon(Icons.task),
-      ): BlocProvider(
-        create: (_) => TaskListCubit(),
-        child: const TaskListPage(),
-      ),
+      Tab(
+        text: AppLocalizations.get(
+          AppLocalizations.tasks,
+        ),
+        icon: const Icon(Icons.task),
+      ): const TaskListPage(),
     };
-    // Build root
     return Scaffold(
       body: DefaultTabController(
         initialIndex: 1,
@@ -41,7 +42,9 @@ class PrimaryPage extends StatelessWidget {
           appBar: AppBar(
             titleSpacing: 0,
             centerTitle: true,
-            title: const Text('To-do list'),
+            title: Text(
+              AppLocalizations.get(AppLocalizations.appName),
+            ),
             bottom: TabBar(
               tabs: tabs.keys.toList(),
             ),
@@ -51,32 +54,44 @@ class PrimaryPage extends StatelessWidget {
                   context: context,
                   builder: (_) {
                     return AlertDialog(
-                      title: const Text('Settings'),
+                      title: Text(
+                        AppLocalizations.get(AppLocalizations.settings),
+                      ),
                       content: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           ListTile(
-                            title: const Text('Theme'),
+                            title: Text(
+                              AppLocalizations.get(
+                                AppLocalizations.theme,
+                              ),
+                            ),
                             trailing: DropdownButton<AppTheme>(
                               value: context.read<AppCubit>().state.theme,
                               onChanged: (theme) {
+                                Navigator.pop(context);
                                 context.read<AppCubit>().onThemeChanged(theme!);
                               },
                               items: AppTheme.values
                                   .map(
                                     (theme) => DropdownMenuItem<AppTheme>(
                                       value: theme,
-                                      child: Text(theme.name.toUpperCaseAt(0)),
+                                      child: Text(theme.toString()),
                                     ),
                                   )
                                   .toList(),
                             ),
                           ),
                           ListTile(
-                            title: const Text('Language'),
+                            title: Text(
+                              AppLocalizations.get(
+                                AppLocalizations.language,
+                              ),
+                            ),
                             trailing: DropdownButton<AppLocale>(
                               value: context.read<AppCubit>().state.locale,
                               onChanged: (locale) {
+                                Navigator.pop(context);
                                 context
                                     .read<AppCubit>()
                                     .onLocaleChanged(locale!);
@@ -97,12 +112,16 @@ class PrimaryPage extends StatelessWidget {
                   },
                 );
               },
-              tooltip: 'Settings',
+              tooltip: AppLocalizations.get(
+                AppLocalizations.settings,
+              ),
               icon: const Icon(Icons.settings),
             ),
             actions: [
               IconButton(
-                tooltip: 'My profile',
+                tooltip: AppLocalizations.get(
+                  AppLocalizations.myProfile,
+                ),
                 onPressed: () {
                   Navigator.pushNamed(
                     context,

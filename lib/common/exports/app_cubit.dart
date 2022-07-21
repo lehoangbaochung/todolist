@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:todolist/common/exports/localization.dart';
 
 class AppCubit extends Cubit<AppState> {
   AppCubit() : super(AppState.initial());
@@ -38,18 +40,15 @@ enum AppLocale {
   en,
   vi;
 
-  @override
-  String toString() {
-    switch (this) {
-      case AppLocale.en:
-        return 'English';
-      case AppLocale.vi:
-        return 'Tiếng Việt';
-    }
-  }
-
   static Iterable<String> get languageCodes =>
       values.map((locale) => locale.name);
+
+  static Iterable<LocalizationsDelegate> get localizationsDelegates => const [
+        AppLocalizationsDelegate(),
+        GlobalWidgetsLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ];
 
   static Map<String, Locale> get supportedLocales =>
       {for (var code in languageCodes) code: Locale(code)};
@@ -62,6 +61,16 @@ enum AppLocale {
   }
 
   Locale get data => supportedLocales[name]!;
+
+  @override
+  String toString() {
+    switch (this) {
+      case AppLocale.en:
+        return 'English';
+      case AppLocale.vi:
+        return 'Tiếng Việt';
+    }
+  }
 }
 
 class AppState {
@@ -128,6 +137,16 @@ enum AppTheme {
         return ThemeData.light();
       case AppTheme.dark:
         return ThemeData.dark();
+    }
+  }
+
+  @override
+  String toString() {
+    switch (this) {
+      case AppTheme.light:
+        return AppLocalizations.get(AppLocalizations.light);
+      case AppTheme.dark:
+        return AppLocalizations.get(AppLocalizations.dark);
     }
   }
 }

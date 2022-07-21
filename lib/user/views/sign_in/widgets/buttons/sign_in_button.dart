@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:todolist/common/models/language/language.dart';
+import 'package:todolist/common/exports/localization.dart';
 
 import '/common/models/route_provider.dart';
 import '/user/views/sign_in/cubits/sign_in_cubit.dart';
@@ -12,7 +12,7 @@ class SignInButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      child: Text('${Language.dictionary[LanguageKey.signIn]}'),
+      child: Text(AppLocalizations.get(AppLocalizations.signIn)),
       onPressed: () {
         final cubit = context.read<SignInCubit>();
         cubit.onSubmit();

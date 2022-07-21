@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:todolist/common/exports/localization.dart';
 
 import '/common/exports/utils.dart';
 import '/task/views/task_detail/task_detail_model.dart';
@@ -13,31 +14,34 @@ class TaskListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocBuilder<TaskListCubit, TaskListState>(
-        builder: (_, state) {
-          return state.tasks.isEmpty
-              ? const Center(
-                  child: Text(
-                    'Empty',
-                    style: TextStyle(
-                      fontSize: 18,
+      body: BlocProvider(
+        create: (_) => TaskListCubit(),
+        child: BlocBuilder<TaskListCubit, TaskListState>(
+          builder: (_, state) {
+            return state.tasks.isEmpty
+                ? Center(
+                    child: Text(
+                      AppLocalizations.get(
+                        AppLocalizations.empty,
+                      ),
+                      style: const TextStyle(
+                        fontSize: 18,
+                      ),
                     ),
-                  ),
-                )
-              : Padding(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 4.0,
-                  ),
-                  child: ListView.builder(
+                  )
+                : ListView.builder(
                     itemCount: state.tasks.length,
                     itemBuilder: (_, index) {
                       return TaskListTile(
                         state.tasks.elementAt(index),
                       );
                     },
-                  ),
-                );
-        },
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 4.0,
+                    ),
+                  );
+          },
+        ),
       ),
       floatingActionButton: Column(
         crossAxisAlignment: CrossAxisAlignment.end,
@@ -69,8 +73,7 @@ class TaskListPage extends StatelessWidget {
                                   .read<TaskListCubit>()
                                   .onFilterChanged(filter);
                               context.showSnackBar(
-                                '${context.read<TaskListCubit>()
-                                .state.filter.name.toUpperCaseAt(0)} tasks are visible.',
+                                '${context.read<TaskListCubit>().state.filter.name.toUpperCaseAt(0)} tasks are visible.',
                               );
                             },
                           ),

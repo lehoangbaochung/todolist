@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:todolist/user/views/sign_in/cubits/sign_in_cubit.dart';
 import 'package:todolist/user/views/sign_in/pages/sign_in_page.dart';
 import 'package:todolist/user/views/sign_up/cubits/sign_up_cubit.dart';
 import 'package:todolist/user/views/sign_up/pages/sign_up_page.dart';
@@ -30,18 +29,12 @@ class RouteProvider {
     return MaterialPageRoute(
       builder: (context) => {
             primary: const PrimaryPage(),
-            signIn: BlocProvider(
-              create: (_) => SignInCubit(),
-              child: const SignInPage(),
-            ),
+            signIn: const SignInPage(),
             signUp: BlocProvider(
               create: (_) => SignUpCubit(),
               child: const SignUpPage(),
             ),
-            myProfile: BlocProvider(
-              create: (_) => MyProfileCubit(),
-              child: const MyProfilePage(),
-            ),
+            myProfile: const MyProfilePage(),
           }[settings.name] ?? const ErrorPage(),
     );
   }

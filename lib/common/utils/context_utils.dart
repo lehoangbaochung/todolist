@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:todolist/common/exports/localization.dart';
 
-extension ContextUtils on BuildContext {
-  AppLocalizations get localizations => AppLocalizations.of(this);
-  
+extension ContextUtils on BuildContext {  
   /// Shows a [SnackBar] with a message [msg] across all registered [Scaffold]s.
   void showSnackBar(String msg, {SnackBarAction? action}) {
     ScaffoldMessenger.of(this)
