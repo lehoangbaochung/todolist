@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '/common/exports/localization.dart';
-import '/common/exports/utils.dart';
-import '/common/models/route_provider.dart';
+import '/common/models/app_routes.dart';
+import '../../../common/models/app_localization.dart';
+import '/common/utils/context_utils.dart';
 import '/task/views/task_list/task_list_model.dart';
 import '/user/models/user.dart';
 import '/user/views/change_name/change_name_model.dart';
@@ -21,21 +21,17 @@ class MyProfilePage extends StatelessWidget {
         titleSpacing: 0,
         centerTitle: true,
         title: Text(
-          AppLocalizations.get(
-            AppLocalizations.myProfile,
-          ),
+          AppLocalizations.get(43),
         ),
         actions: [
           IconButton(
-            tooltip: AppLocalizations.get(
-              AppLocalizations.signOut,
-            ),
+            tooltip: AppLocalizations.get(31),
             icon: const Icon(Icons.logout),
             onPressed: () {
               UserProvider.signOut();
-              RouteProvider.show(
+              Navigator.pushNamed(
                 context,
-                RouteProvider.signIn,
+                AppRoutes.signIn,
               );
             },
           ),
@@ -61,9 +57,7 @@ class MyProfilePage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          '${AppLocalizations.get(
-                            AppLocalizations.myProfileGreeting,
-                          )}, ${state.userName}!',
+                          '${AppLocalizations.get(53)}, ${state.userName}!',
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           style: Theme.of(context).textTheme.headline6,
@@ -81,17 +75,17 @@ class MyProfilePage extends StatelessWidget {
                               ),
                             );
                           },
+                          tooltip: AppLocalizations.get(74),
                           icon: const Icon(Icons.edit),
                         ),
                       ],
                     ),
                     const SizedBox(height: 16),
+                    // All tasks
                     Card(
                       child: ListTile(
                         title: Text(
-                          AppLocalizations.get(
-                            AppLocalizations.allTask,
-                          ),
+                          AppLocalizations.get(54),
                         ),
                         leading: const Icon(
                           Icons.task_alt,
@@ -106,12 +100,11 @@ class MyProfilePage extends StatelessWidget {
                         ),
                       ),
                     ),
+                    // Completed tasks
                     Card(
                       child: ListTile(
                         title: Text(
-                          AppLocalizations.get(
-                            AppLocalizations.completedTask,
-                          ),
+                          AppLocalizations.get(55),
                         ),
                         leading: const Icon(
                           Icons.check_circle,
@@ -126,12 +119,11 @@ class MyProfilePage extends StatelessWidget {
                         ),
                       ),
                     ),
+                    // Uncompleted tasks
                     Card(
                       child: ListTile(
                         title: Text(
-                          AppLocalizations.get(
-                            AppLocalizations.uncompletedTask,
-                          ),
+                          AppLocalizations.get(56),
                         ),
                         leading: const Icon(
                           Icons.radio_button_unchecked,
@@ -151,11 +143,10 @@ class MyProfilePage extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
+                        // Change password button
                         OutlinedButton(
                           child: Text(
-                            AppLocalizations.get(
-                              AppLocalizations.changePassword,
-                            ),
+                            AppLocalizations.get(57),
                           ),
                           onPressed: () {
                             showModalBottomSheet<void>(
@@ -171,11 +162,10 @@ class MyProfilePage extends StatelessWidget {
                           },
                         ),
                         const SizedBox(width: 8),
+                        // Edit profile button
                         ElevatedButton(
                           child: Text(
-                            AppLocalizations.get(
-                              AppLocalizations.editProfile,
-                            ),
+                            AppLocalizations.get(58),
                           ),
                           onPressed: () {
                             showModalBottomSheet<void>(
@@ -191,11 +181,10 @@ class MyProfilePage extends StatelessWidget {
                           },
                         ),
                         const SizedBox(width: 8),
+                        // Delete account button
                         TextButton(
                           child: Text(
-                            AppLocalizations.get(
-                              AppLocalizations.deleteAccount,
-                            ),
+                            AppLocalizations.get(59),
                           ),
                           onPressed: () {
                             showDialog(
@@ -203,21 +192,15 @@ class MyProfilePage extends StatelessWidget {
                               builder: (context) {
                                 return AlertDialog(
                                   title: Text(
-                                    AppLocalizations.get(
-                                      AppLocalizations.deleteAccount,
-                                    ),
+                                    AppLocalizations.get(59),
                                   ),
                                   content: Text(
-                                    AppLocalizations.get(
-                                      AppLocalizations.deleteAccountQuestion,
-                                    ),
+                                    AppLocalizations.get(60),
                                   ),
                                   actions: [
                                     TextButton(
                                       child: Text(
-                                        AppLocalizations.get(
-                                          AppLocalizations.cancel,
-                                        ),
+                                        AppLocalizations.get(23),
                                       ),
                                       onPressed: () {
                                         Navigator.pop(context);
@@ -225,22 +208,17 @@ class MyProfilePage extends StatelessWidget {
                                     ),
                                     TextButton(
                                       child: Text(
-                                        AppLocalizations.get(
-                                          AppLocalizations.delete,
-                                        ),
+                                        AppLocalizations.get(48),
                                       ),
                                       onPressed: () {
-                                        RouteProvider.hide(context);
-                                        RouteProvider.show(
+                                        Navigator.pop(context);
+                                        Navigator.pushNamed(
                                           context,
-                                          RouteProvider.signIn,
+                                          AppRoutes.signIn,
                                         );
                                         UserProvider.signOut();
                                         context.showSnackBar(
-                                          AppLocalizations.get(
-                                            AppLocalizations
-                                                .deleteAccountSuccessfully,
-                                          ),
+                                          AppLocalizations.get(66),
                                         );
                                       },
                                     ),

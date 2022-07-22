@@ -1,4 +1,4 @@
-import '/common/exports/utils.dart';
+import 'package:todolist/common/models/app_localization.dart';
 
 enum SignUpStatus {
   initial,
@@ -11,15 +11,15 @@ enum SignUpStatus {
   String toString() {
     switch (this) {
       case SignUpStatus.initial:
-        return StringUtils.empty;
+        return '';
       case SignUpStatus.invalid:
-        return 'Sign up is not valid';
+        return AppLocalizations.get(64);
       case SignUpStatus.exist:
-        return 'Email already exist!';
+        return AppLocalizations.get(65);
       case SignUpStatus.failure:
-        return 'Sign up failed!';
+        return AppLocalizations.get(28);
       case SignUpStatus.success:
-        return 'Sign up successfully!';
+        return AppLocalizations.get(27);
     }
   }
 }

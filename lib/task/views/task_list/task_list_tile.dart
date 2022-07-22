@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '/common/exports/utils.dart';
+import '../../../common/models/app_localization.dart';
+import '/common/utils/context_utils.dart';
+import '/common/utils/datetime_utils.dart';
 import '/task/models/task.dart';
 import '/task/views/task_detail/task_detail_model.dart';
 import 'task_list_model.dart';
@@ -79,21 +81,31 @@ class _TaskListTileState extends State<TaskListTile> {
             context: context,
             builder: (context) {
               return AlertDialog(
-                title: const Text('Delete task'),
-                content: const Text('Are you sure to delete this task?'),
+                title: Text(
+                  AppLocalizations.get(49),
+                ),
+                content: Text(
+                  AppLocalizations.get(50),
+                ),
                 actions: [
                   TextButton(
-                    child: const Text('Cancel'),
+                    child: Text(
+                      AppLocalizations.get(23),
+                    ),
                     onPressed: () {
                       Navigator.pop(context);
                     },
                   ),
                   TextButton(
-                    child: const Text('Delete'),
+                    child: Text(
+                      AppLocalizations.get(48),
+                    ),
                     onPressed: () {
                       widget.task.delete();
                       Navigator.pop(context);
-                      context.showSnackBar('Task deleted.');
+                      context.showSnackBar(
+                        AppLocalizations.get(66),
+                      );
                     },
                   ),
                 ],

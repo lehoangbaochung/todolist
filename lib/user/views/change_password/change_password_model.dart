@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '/common/exports/utils.dart';
+import '../../../common/models/app_localization.dart';
 import '/user/models/user.dart';
 import '/user/views/authentication/authentication_model.dart';
 
@@ -18,11 +18,11 @@ enum ChangePasswordStatus {
   String toString() {
     switch (this) {
       case ChangePasswordStatus.initial:
-        return StringUtils.empty;
+        return '';
       case ChangePasswordStatus.success:
-        return 'Your password is changed successfully';
+        return AppLocalizations.get(70);
       case ChangePasswordStatus.failure:
-        return 'Old password is not correct';
+        return AppLocalizations.get(69);
     }
   }
 }

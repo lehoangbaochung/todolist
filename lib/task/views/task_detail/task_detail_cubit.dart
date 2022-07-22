@@ -30,7 +30,7 @@ class TaskDetailCubit extends Cubit<TaskDetailState> {
       state.copyWith(
         alarmButton: AlarmButton(data: alarmTime),
         saveButton: SaveButton(
-          enable: state.contentInput.text.isNotNull &&
+          enable: state.contentInput.text != null &&
               state.contentInput.text!.isNotEmpty &&
               state.currentTask?.alarmTime != alarmTime,
         ),

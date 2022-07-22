@@ -1,4 +1,5 @@
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:todolist/common/models/app_localization.dart';
 
 @HiveType(typeId: GenderAdapter.id)
 enum Gender {
@@ -23,6 +24,18 @@ enum Gender {
       (gender) => gender.name == name,
       orElse: () => Gender.other,
     );
+  }
+
+  @override
+  String toString() {
+    switch (this) {
+      case Gender.male:
+        return AppLocalizations.get(13);
+      case Gender.female:
+        return AppLocalizations.get(14);
+      case Gender.other:
+        return AppLocalizations.get(15);
+    }
   }
 }
 

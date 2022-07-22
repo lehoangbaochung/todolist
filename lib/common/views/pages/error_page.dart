@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todolist/common/models/app_localization.dart';
 
 class ErrorPage extends StatelessWidget {
   const ErrorPage({Key? key}) : super(key: key);
@@ -14,7 +15,7 @@ class ErrorPage extends StatelessWidget {
             const FlutterLogo(size: 120),
             const SizedBox(height: 12),
             Text(
-              'Error',
+              AppLocalizations.get(72),
               style: Theme.of(context)
                   .textTheme
                   .headline5
@@ -22,13 +23,15 @@ class ErrorPage extends StatelessWidget {
             ),
             const SizedBox(height: 12),
             Text(
-              'Oops! Something went wrong...',
+              AppLocalizations.get(73),
               style: Theme.of(context).textTheme.bodyText1,
             ),
             const SizedBox(height: 12),
             OutlinedButton(
               onPressed: () => Navigator.pop(context),
-              child: const Text('Back'),
+              child: Text(
+                AppLocalizations.get(19),
+              ),
             ),
           ],
         ),

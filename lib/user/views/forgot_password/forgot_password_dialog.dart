@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:todolist/common/exports/localization.dart';
 
+import '/common/models/app_localization.dart';
 import 'forgot_password_model.dart';
 
 /// A dialog that allows the user to find password.
@@ -25,7 +25,7 @@ class ForgotPasswordDialog extends StatelessWidget {
                   autofocus: true,
                   decoration: InputDecoration(
                     border: const OutlineInputBorder(),
-                    labelText: AppLocalizations.get(AppLocalizations.email),
+                    labelText: AppLocalizations.get(2),
                     errorText: state.emailInput.errorText,
                   ),
                   onChanged: (text) {
@@ -43,9 +43,7 @@ class ForgotPasswordDialog extends StatelessWidget {
                         Navigator.pop(context);
                       },
                       child: Text(
-                        AppLocalizations.get(
-                          AppLocalizations.cancel,
-                        ),
+                        AppLocalizations.get(23),
                       ),
                     ),
                     RichText(
@@ -71,9 +69,7 @@ class ForgotPasswordDialog extends StatelessWidget {
                               context.read<ForgotPasswordCubit>().onSubmit();
                             },
                       child: Text(
-                        AppLocalizations.get(
-                          AppLocalizations.find,
-                        ),
+                        AppLocalizations.get(24),
                       ),
                     ),
                   ],

@@ -1,5 +1,5 @@
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:todolist/common/exports/app_cubit.dart';
+import 'package:todolist/common/blocs/cubit.dart';
 
 import '/task/models/task.dart';
 import '/user/models/gender.dart';
@@ -24,7 +24,7 @@ abstract class HiveProvider<T extends HiveObject> {
   /// Opens all boxes of [Hive].
   static Future<void> open() {
     return Future.sync(() async {
-      AppState.open();
+      AppHive.init();
       UserProvider.init();
       TaskProvider.box = await Hive.openBox<Task>(TaskProvider.name);
     });

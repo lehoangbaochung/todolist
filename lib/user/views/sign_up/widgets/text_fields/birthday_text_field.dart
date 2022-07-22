@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:todolist/common/models/app_localization.dart';
 import 'package:todolist/common/utils/datetime_utils.dart';
 import 'package:todolist/user/views/sign_up/cubits/sign_up_cubit.dart';
 
@@ -13,11 +14,11 @@ class BirthdayTextField extends StatelessWidget {
     return TextField(
       readOnly: true,
       keyboardType: TextInputType.datetime,
-      decoration: const InputDecoration(
-        icon: Icon(Icons.cake),
-        suffixIcon: Icon(Icons.date_range),
-        border: OutlineInputBorder(),
-        labelText: 'Birthday',
+      decoration: InputDecoration(
+        icon: const Icon(Icons.cake),
+        suffixIcon: const Icon(Icons.date_range),
+        border: const OutlineInputBorder(),
+        labelText: AppLocalizations.get(16),
       ),
       controller: TextEditingController(
         text: data.toLocalString(),

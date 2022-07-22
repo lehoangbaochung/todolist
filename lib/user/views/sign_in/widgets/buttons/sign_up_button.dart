@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-
-import '/common/exports/localization.dart';
-import '/common/models/route_provider.dart';
+import 'package:todolist/common/models/app_localization.dart';
+import 'package:todolist/common/models/app_routes.dart';
 
 class SignUpButton extends StatelessWidget {
   const SignUpButton({Key? key}) : super(key: key);
@@ -10,11 +9,11 @@ class SignUpButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return OutlinedButton(
       child: Text(
-        AppLocalizations.get(AppLocalizations.signUp),
+        AppLocalizations.get(5),
       ),
       onPressed: () {
         Navigator.pop(context);
-        RouteProvider.show(context, RouteProvider.signUp);
+        Navigator.pushNamed(context, AppRoutes.signUp);
       },
     );
   }

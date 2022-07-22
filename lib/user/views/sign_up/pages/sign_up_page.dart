@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '/common/models/app_localization.dart';
 import '/user/views/sign_up/cubits/sign_up_cubit.dart';
 import '/user/views/sign_up/cubits/sign_up_state.dart';
 import '/user/views/sign_up/cubits/sign_up_status.dart';
@@ -18,8 +19,9 @@ class SignUpPage extends StatelessWidget {
             Column(
               children: [
                 const FlutterLogo(),
+                const SizedBox(width: 12),
                 Text(
-                  'Sign up',
+                  AppLocalizations.get(5),
                   style: Theme.of(context).textTheme.headline6,
                 ),
               ],

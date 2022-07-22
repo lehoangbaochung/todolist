@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:todolist/common/models/app_localization.dart';
 
 import '/user/views/sign_up/cubits/sign_up_cubit.dart';
 
@@ -21,9 +22,9 @@ class PasswordTextField extends StatelessWidget {
 
   String? get errorText {
     if (source == null && target == null) return null;
-    if (source != target) return 'Password do not match';
+    if (source != target) return AppLocalizations.get(22);
     if (source!.length < 6 || target!.length < 6) {
-      return 'Password must be at least 6 characters';
+      return AppLocalizations.get(8);
     }
     return null;
   }
@@ -55,7 +56,7 @@ class PasswordTextField extends StatelessWidget {
                         Icons.close,
                         color: Colors.red,
                       ),
-            labelText: 'Password',
+            labelText: AppLocalizations.get(3),
             errorText: errorText,
           ),
           onChanged: (text) {
@@ -76,7 +77,7 @@ class PasswordTextField extends StatelessWidget {
                         Icons.close,
                         color: Colors.red,
                       ),
-            labelText: 'Confirm new password',
+            labelText: AppLocalizations.get(18),
             errorText: errorText,
           ),
           onChanged: (text) {

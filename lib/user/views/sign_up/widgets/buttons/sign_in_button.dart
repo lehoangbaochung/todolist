@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:todolist/common/models/route_provider.dart';
+import 'package:todolist/common/models/app_routes.dart';
+import 'package:todolist/common/models/app_localization.dart';
 
 class SignInButton extends StatelessWidget {
   const SignInButton({Key? key}) : super(key: key);
@@ -7,10 +8,12 @@ class SignInButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextButton(
-      child: const Text('Back to sign in'),
+      child: Text(
+        AppLocalizations.get(19),
+      ),
       onPressed: () {
-        RouteProvider.hide(context);
-        RouteProvider.show(context, RouteProvider.signIn);
+        Navigator.pop(context);
+        Navigator.pushNamed(context, AppRoutes.signIn);
       },
     );
   }

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '/user/models/user.dart';
+import 'package:todolist/common/models/app_localization.dart';
 
-import '/common/exports/utils.dart';
+import '/common/utils/datetime_utils.dart';
 import '/task/models/task.dart';
+import '/user/models/user.dart';
 
 export 'task_detail_dialog.dart';
 
@@ -16,7 +17,7 @@ class AlarmButton {
   AlarmButton({this.data});
 
   String get label => data == null
-      ? 'Set alarm'
+      ? AppLocalizations.get(52)
       : data.toLocalString(withTime: true)!;
 }
 

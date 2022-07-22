@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:todolist/common/exports/localization.dart';
+import 'package:todolist/common/models/app_localization.dart';
 
 import '/user/views/forgot_password/forgot_password_model.dart';
 
@@ -9,7 +9,9 @@ class ForgotPasswordButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextButton(
-      child: Text('${AppLocalizations.get(AppLocalizations.forgotPassword)}?'),
+      child: Text(
+        AppLocalizations.get(6),
+      ),
       onPressed: () {
         showModalBottomSheet<void>(
           context: context,

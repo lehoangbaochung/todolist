@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:todolist/common/utils/string_utils.dart';
+import 'package:todolist/common/models/app_localization.dart';
 import 'package:todolist/user/models/gender.dart';
 import 'package:todolist/user/views/sign_up/cubits/sign_up_cubit.dart';
 
@@ -16,14 +16,14 @@ class GenderTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextField(
       readOnly: true,
-      decoration: const InputDecoration(
-        icon: Icon(Icons.visibility),
-        suffixIcon: Icon(Icons.arrow_drop_down),
-        border: OutlineInputBorder(),
-        labelText: 'Gender',
+      decoration: InputDecoration(
+        icon: const Icon(Icons.visibility),
+        suffixIcon: const Icon(Icons.arrow_drop_down),
+        border: const OutlineInputBorder(),
+        labelText: AppLocalizations.get(12),
       ),
       controller: TextEditingController(
-        text: data.name.toUpperCaseAt(0),
+        text: data.toString(),
       ),
       onTap: () {
         showDialog<void>(
@@ -31,13 +31,15 @@ class GenderTextField extends StatelessWidget {
           builder: (_) => BlocProvider.value(
             value: context.read<SignUpCubit>(),
             child: AlertDialog(
-              title: const Text('Gender'),
+              title: Text(
+                AppLocalizations.get(12),
+              ),
               content: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   for (final gender in Gender.values)
                     RadioListTile<Gender>(
-                      title: Text(gender.name.toUpperCaseAt(0)),
+                      title: Text(gender.toString()),
                       value: gender,
                       groupValue: data,
                       onChanged: (gender) {

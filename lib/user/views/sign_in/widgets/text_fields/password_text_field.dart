@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:todolist/common/exports/localization.dart';
+import 'package:todolist/common/models/app_localization.dart';
 
 import '/user/views/sign_in/cubits/sign_in_cubit.dart';
 
@@ -36,17 +36,17 @@ class PasswordTextField extends StatelessWidget {
         border: const OutlineInputBorder(),
         suffixIcon: IconButton(
           tooltip: obscureText
-              ? AppLocalizations.get(AppLocalizations.showPassword)
-              : AppLocalizations.get(AppLocalizations.hidePassword),
+              ? AppLocalizations.get(9)
+              : AppLocalizations.get(10),
           icon: Icon(obscureText ? Icons.visibility : Icons.visibility_off),
           onPressed: () {
             context.read<SignInCubit>().onPasswordChecked(!obscureText);
           },
         ),
-        labelText: AppLocalizations.get(AppLocalizations.password),
+        labelText: AppLocalizations.get(3),
         errorText: !invalid
             ? null
-            : AppLocalizations.get(AppLocalizations.passwordInvalid),
+            : AppLocalizations.get(8),
       ),
       onChanged: (text) {
         context.read<SignInCubit>().onPasswordChanged(text);

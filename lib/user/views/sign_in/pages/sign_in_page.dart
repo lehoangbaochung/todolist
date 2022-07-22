@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:todolist/common/models/app_localization.dart';
 
-import '/common/exports/localization.dart';
 import '/user/views/sign_in/cubits/sign_in_cubit.dart';
 import '/user/views/sign_in/cubits/sign_in_state.dart';
 import '/user/views/sign_in/cubits/sign_in_status.dart';
@@ -27,7 +27,7 @@ class SignInPage extends StatelessWidget {
                     const FlutterLogo(size: 120),
                     const SizedBox(height: 8),
                     Text(
-                      AppLocalizations.get(AppLocalizations.signInGreeting),
+                      AppLocalizations.get(1),
                       style: Theme.of(context).textTheme.headline5,
                     ),
                     const SizedBox(height: 16),

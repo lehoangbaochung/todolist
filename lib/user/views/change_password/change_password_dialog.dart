@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '/common/exports/utils.dart';
+import '../../../common/models/app_localization.dart';
+import '/common/utils/context_utils.dart';
 import 'change_password_model.dart';
 
 /// A dialog that allows the user to change password.
@@ -28,13 +29,17 @@ class ChangePasswordDialog extends StatelessWidget {
                 obscureText: !state.oldPasswordInput.visible,
                 decoration: InputDecoration(
                   border: const OutlineInputBorder(),
-                  labelText: 'Old password',
+                  labelText: AppLocalizations.get(61),
                   errorText: state.oldPasswordInput.errorText,
                   suffixIcon: IconButton(
-                    tooltip: 'Toggle password',
-                    icon: Icon(!state.oldPasswordInput.visible
-                        ? Icons.visibility
-                        : Icons.visibility_off),
+                    tooltip: !state.oldPasswordInput.visible
+                        ? AppLocalizations.get(9)
+                        : AppLocalizations.get(10),
+                    icon: Icon(
+                      !state.oldPasswordInput.visible
+                          ? Icons.visibility
+                          : Icons.visibility_off,
+                    ),
                     onPressed: () {
                       context.read<ChangePasswordCubit>().onOldPasswordChecked(
                             !state.oldPasswordInput.visible,
@@ -56,13 +61,17 @@ class ChangePasswordDialog extends StatelessWidget {
                 obscureText: !state.newPasswordInput.visible,
                 decoration: InputDecoration(
                   border: const OutlineInputBorder(),
-                  labelText: 'New password',
+                  labelText: AppLocalizations.get(62),
                   errorText: state.newPasswordInput.errorText,
                   suffixIcon: IconButton(
-                    tooltip: 'Toggle password',
-                    icon: Icon(!state.newPasswordInput.visible
-                        ? Icons.visibility
-                        : Icons.visibility_off),
+                    tooltip: !state.newPasswordInput.visible
+                        ? AppLocalizations.get(9)
+                        : AppLocalizations.get(10),
+                    icon: Icon(
+                      !state.newPasswordInput.visible
+                          ? Icons.visibility
+                          : Icons.visibility_off,
+                    ),
                     onPressed: () {
                       context.read<ChangePasswordCubit>().onNewPasswordChecked(
                             !state.newPasswordInput.visible,
@@ -85,13 +94,17 @@ class ChangePasswordDialog extends StatelessWidget {
                 obscureText: !state.renewPasswordInput.visible,
                 decoration: InputDecoration(
                   border: const OutlineInputBorder(),
-                  labelText: 'Confirm new password',
+                  labelText: AppLocalizations.get(18),
                   errorText: state.renewPasswordInput.errorText,
                   suffixIcon: IconButton(
-                    tooltip: 'Toggle password',
-                    icon: Icon(!state.renewPasswordInput.visible
-                        ? Icons.visibility
-                        : Icons.visibility_off),
+                    tooltip: !state.renewPasswordInput.visible
+                        ? AppLocalizations.get(9)
+                        : AppLocalizations.get(10),
+                    icon: Icon(
+                      !state.renewPasswordInput.visible
+                          ? Icons.visibility
+                          : Icons.visibility_off,
+                    ),
                     onPressed: () {
                       context.read<ChangePasswordCubit>().onNewPasswordChecked(
                             !state.renewPasswordInput.visible,
@@ -116,19 +129,26 @@ class ChangePasswordDialog extends StatelessWidget {
                     onPressed: () {
                       Navigator.pop(context);
                     },
-                    child: const Text('Cancel'),
+                    child: Text(
+                      AppLocalizations.get(23),
+                    ),
                   ),
                   Text(state.changePasswordStatus.toString()),
                   // Save button
                   ElevatedButton(
                     onPressed: () {
                       context.read<ChangePasswordCubit>().onSubmit();
-                      if (state.changePasswordStatus == ChangePasswordStatus.success) {
+                      if (state.changePasswordStatus ==
+                          ChangePasswordStatus.success) {
                         Navigator.pop(context);
-                        context.showSnackBar('Password changed successfully.');
+                        context.showSnackBar(
+                          AppLocalizations.get(70),
+                        );
                       }
                     },
-                    child: const Text('Save'),
+                    child: Text(
+                      AppLocalizations.get(68),
+                    ),
                   ),
                 ],
               ),

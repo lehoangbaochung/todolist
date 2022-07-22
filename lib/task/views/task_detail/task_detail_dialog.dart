@@ -2,9 +2,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '/task/views/task_list/task_list_model.dart';
 
-import '/common/exports/utils.dart';
+import '/common/models/app_localization.dart';
+import '/common/utils/context_utils.dart';
+import '/common/utils/string_utils.dart';
+import '/task/views/task_list/task_list_model.dart';
 import 'task_detail_model.dart';
 
 /// A dialog that allows the user to add or edit a task with its details.
@@ -30,9 +32,9 @@ class TaskDetailDialog extends StatelessWidget {
                 maxLines: null,
                 autofocus: true,
                 controller: _contentController,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: 'Describe your task here...',
+                decoration: InputDecoration(
+                  border: const OutlineInputBorder(),
+                  hintText: AppLocalizations.get(51),
                 ),
                 onChanged: (text) {
                   context.read<TaskDetailCubit>().onContentChanged(text);
@@ -57,7 +59,7 @@ class TaskDetailDialog extends StatelessWidget {
                           ),
                           deleteIcon:
                               const Icon(Icons.clear, color: Colors.blue),
-                          deleteButtonTooltipMessage: 'Remove alarm',
+                          deleteButtonTooltipMessage: AppLocalizations.get(75),
                           onDeleted: state.alarmButton.data == null
                               ? null
                               : () {
@@ -94,11 +96,15 @@ class TaskDetailDialog extends StatelessWidget {
                         ? null
                         : () {
                             Navigator.pop(context);
-                            context.showSnackBar('Task added.');
+                            context.showSnackBar(
+                              AppLocalizations.get(12),
+                            );
                             context.read<TaskDetailCubit>().onSave();
                             context.read<TaskListCubit>().onRefresh();
                           },
-                    child: const Text('Save'),
+                    child: Text(
+                      AppLocalizations.get(68),
+                    ),
                   ),
                 ],
               ),

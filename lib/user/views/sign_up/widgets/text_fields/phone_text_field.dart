@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:todolist/common/models/app_localization.dart';
 import 'package:todolist/user/views/sign_up/cubits/sign_up_cubit.dart';
 
 class PhoneTextField extends StatelessWidget {
@@ -27,12 +28,12 @@ class PhoneTextField extends StatelessWidget {
                     Icons.close,
                     color: Colors.red,
                   ),
-        labelText: 'Phone number',
+        labelText: AppLocalizations.get(17),
         errorText: data == null
             ? null
             : !invalid
                 ? null
-                : 'Phone number must be at least 10 characters',
+                : AppLocalizations.get(21),
       ),
       onChanged: (text) {
         context.read<SignUpCubit>().onPhoneNumberChanged(text);

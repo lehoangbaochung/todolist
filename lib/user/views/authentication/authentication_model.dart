@@ -1,7 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:todolist/common/models/app_localization.dart';
+import 'package:todolist/common/utils/datetime_utils.dart';
 
 import '/user/models/gender.dart';
-import '/common/exports/utils.dart';
 
 part 'authentication_cubit.dart';
 part 'authentication_state.dart';
@@ -11,9 +12,9 @@ abstract class AuthenticationInput {
 
   AuthenticationInput(this.text);
 
-  bool get invalid => text.isNull || text!.trim().isEmpty;
+  bool get invalid => text == null || text!.trim().isEmpty;
 
-  String? get errorText => !invalid ? null : 'This field is required';
+  String? get errorText => !invalid ? null : AppLocalizations.get(20);
 }
 
 class BirthdayInput extends AuthenticationInput {
@@ -30,13 +31,13 @@ class EmailInput extends AuthenticationInput {
   EmailInput([String? text]) : super(text?.trim());
 
   @override
-  bool get invalid => text.isNull
+  bool get invalid => text == null
       ? false
       : super.invalid || !text!.contains('@') || !text!.contains('.');
 
   @override
   String? get errorText =>
-      !invalid ? super.errorText : 'This email address is not valid';
+      !invalid ? super.errorText : AppLocalizations.get(7);
 }
 
 class GenderInput extends AuthenticationInput {
@@ -49,7 +50,7 @@ class NameInput extends AuthenticationInput {
   NameInput([String? text]) : super(text?.trim());
 
   @override
-  bool get invalid => text.isNull ? false : super.invalid;
+  bool get invalid => text == null ? false : super.invalid;
 }
 
 class PasswordInput extends AuthenticationInput {
@@ -75,18 +76,18 @@ class PasswordInput extends AuthenticationInput {
   }
 
   @override
-  bool get invalid => text.isNull ? false : super.invalid || text!.length < 6;
+  bool get invalid => text == null ? false : super.invalid || text!.length < 6;
 
   @override
   String? get errorText {
-    if (target.isNotNull) {
-      if (text.difference(target)) {
-        return 'Passwords do not match';
+    if (target != null) {
+      if (text != target) {
+        return AppLocalizations.get(22);
       }
     }
     return !invalid
         ? super.errorText
-        : 'Password must be at least 6 characters';
+        : AppLocalizations.get(8);
   }
 }
 
@@ -94,12 +95,12 @@ class PhoneNumberInput extends AuthenticationInput {
   PhoneNumberInput([String? text]) : super(text?.trim());
 
   @override
-  bool get invalid => text.isNull ? false : super.invalid || text!.length < 10;
+  bool get invalid => text == null ? false : super.invalid || text!.length < 10;
 
   @override
   String? get errorText => !invalid
       ? super.errorText
-      : 'Phone number must be at least 10 characters';
+      : AppLocalizations.get(21);
 }
 
 class SubmitButton {

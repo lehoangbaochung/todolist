@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '/common/exports/utils.dart';
+import '../../../common/models/app_localization.dart';
+import '/common/utils/context_utils.dart';
 import '/user/models/user.dart';
 import '/user/views/my_profile/my_profile_model.dart';
 import 'change_name_model.dart';
@@ -32,7 +33,7 @@ class ChangeNameDialog extends StatelessWidget {
                   controller: _nameController,
                   decoration: InputDecoration(
                     border: const OutlineInputBorder(),
-                    hintText: 'Name',
+                    hintText: AppLocalizations.get(11),
                     errorText: state.nameInput.errorText,
                   ),
                   onChanged: (text) {
@@ -49,7 +50,9 @@ class ChangeNameDialog extends StatelessWidget {
                       onPressed: () {
                         Navigator.pop(context);
                       },
-                      child: const Text('Cancel'),
+                      child: Text(
+                        AppLocalizations.get(23),
+                      ),
                     ),
                     // Save button
                     ElevatedButton(
@@ -59,9 +62,13 @@ class ChangeNameDialog extends StatelessWidget {
                               Navigator.pop(context);
                               context.read<ChangeNameCubit>().onSubmit();
                               context.read<MyProfileCubit>().onRefresh();
-                              context.showSnackBar('Your name is changed.');
+                              context.showSnackBar(
+                                AppLocalizations.get(67),
+                              );
                             },
-                      child: const Text('Save'),
+                      child: Text(
+                        AppLocalizations.get(68),
+                      ),
                     ),
                   ],
                 ),

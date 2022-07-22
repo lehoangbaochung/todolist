@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:todolist/common/exports/localization.dart';
+import 'package:todolist/common/models/app_localization.dart';
+import 'package:todolist/common/models/app_routes.dart';
 
-import '/common/models/route_provider.dart';
 import '/user/views/sign_in/cubits/sign_in_cubit.dart';
 import '/user/views/sign_in/cubits/sign_in_status.dart';
 
@@ -12,14 +12,16 @@ class SignInButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      child: Text(AppLocalizations.get(AppLocalizations.signIn)),
+      child: Text(
+        AppLocalizations.get(4),
+      ),
       onPressed: () {
         final cubit = context.read<SignInCubit>();
         cubit.onSubmit();
         if (cubit.state.signInStatus == SignInStatus.success) {
-          RouteProvider.show(
+          Navigator.pushNamed(
             context,
-            RouteProvider.primary,
+            AppRoutes.primary,
           );
         }
       },

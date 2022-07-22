@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:todolist/common/exports/app_cubit.dart';
-import 'package:todolist/common/exports/localization.dart';
-import 'package:todolist/common/models/route_provider.dart';
+import 'package:todolist/common/blocs/cubit.dart';
+import 'package:todolist/common/models/app_theme.dart';
+import 'package:todolist/common/models/app_localization.dart';
+import 'package:todolist/common/models/app_routes.dart';
 
 import '/task/views/task_list/task_list_model.dart';
 
@@ -13,26 +14,23 @@ class PrimaryPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final tabs = {
       Tab(
-        text: AppLocalizations.get(
-          AppLocalizations.notes,
-        ),
+        text: AppLocalizations.get(39),
         icon: const Icon(Icons.note_alt),
       ): Center(
         child: Text(
-          AppLocalizations.get(
-            AppLocalizations.empty,
-          ),
+          AppLocalizations.get(63),
           style: const TextStyle(
             fontSize: 18,
           ),
         ),
       ),
       Tab(
-        text: AppLocalizations.get(
-          AppLocalizations.tasks,
-        ),
+        text: AppLocalizations.get(40),
         icon: const Icon(Icons.task),
-      ): const TaskListPage(),
+      ): BlocProvider(
+        create: (_) => TaskListCubit(),
+        child: const TaskListPage(),
+      ),
     };
     return Scaffold(
       body: DefaultTabController(
@@ -43,7 +41,7 @@ class PrimaryPage extends StatelessWidget {
             titleSpacing: 0,
             centerTitle: true,
             title: Text(
-              AppLocalizations.get(AppLocalizations.appName),
+              AppLocalizations.get(0),
             ),
             bottom: TabBar(
               tabs: tabs.keys.toList(),
@@ -55,21 +53,18 @@ class PrimaryPage extends StatelessWidget {
                   builder: (_) {
                     return AlertDialog(
                       title: Text(
-                        AppLocalizations.get(AppLocalizations.settings),
+                        AppLocalizations.get(32),
                       ),
                       content: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           ListTile(
                             title: Text(
-                              AppLocalizations.get(
-                                AppLocalizations.theme,
-                              ),
+                              AppLocalizations.get(33),
                             ),
                             trailing: DropdownButton<AppTheme>(
                               value: context.read<AppCubit>().state.theme,
                               onChanged: (theme) {
-                                Navigator.pop(context);
                                 context.read<AppCubit>().onThemeChanged(theme!);
                               },
                               items: AppTheme.values
@@ -84,14 +79,11 @@ class PrimaryPage extends StatelessWidget {
                           ),
                           ListTile(
                             title: Text(
-                              AppLocalizations.get(
-                                AppLocalizations.language,
-                              ),
+                              AppLocalizations.get(36),
                             ),
                             trailing: DropdownButton<AppLocale>(
                               value: context.read<AppCubit>().state.locale,
                               onChanged: (locale) {
-                                Navigator.pop(context);
                                 context
                                     .read<AppCubit>()
                                     .onLocaleChanged(locale!);
@@ -112,20 +104,16 @@ class PrimaryPage extends StatelessWidget {
                   },
                 );
               },
-              tooltip: AppLocalizations.get(
-                AppLocalizations.settings,
-              ),
+              tooltip: AppLocalizations.get(32),
               icon: const Icon(Icons.settings),
             ),
             actions: [
               IconButton(
-                tooltip: AppLocalizations.get(
-                  AppLocalizations.myProfile,
-                ),
+                tooltip: AppLocalizations.get(43),
                 onPressed: () {
                   Navigator.pushNamed(
                     context,
-                    RouteProvider.myProfile,
+                    AppRoutes.myProfile,
                   );
                 },
                 icon: const Icon(Icons.person),

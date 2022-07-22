@@ -1,8 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:todolist/common/exports/localization.dart';
-import 'package:todolist/common/utils/string_utils.dart';
 
-
+import '/common/models/app_localization.dart';
+import '/common/utils/string_utils.dart';
 import '/user/models/user.dart';
 import '/user/views/authentication/authentication_model.dart';
 
@@ -22,13 +21,9 @@ enum ForgotPasswordStatus {
       case ForgotPasswordStatus.initial:
         return StringUtils.empty;
       case ForgotPasswordStatus.success:
-        return AppLocalizations.get(
-          AppLocalizations.forgotPasswordStatusSuccess,
-        );
+        return AppLocalizations.get(26);
       case ForgotPasswordStatus.failure:
-        return AppLocalizations.get(
-          AppLocalizations.forgotPasswordStatusFailure,
-        );
+        return AppLocalizations.get(25);
     }
   }
 }

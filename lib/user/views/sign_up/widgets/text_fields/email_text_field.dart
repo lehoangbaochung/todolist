@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:todolist/common/models/app_localization.dart';
 
 import '/user/views/sign_up/cubits/sign_up_cubit.dart';
 
@@ -29,12 +30,12 @@ class EmailTextField extends StatelessWidget {
                     Icons.close,
                     color: Colors.red,
                   ),
-        labelText: 'Email',
+        labelText: AppLocalizations.get(2),
         errorText: data == null
             ? null
             : !invalid
                 ? null
-                : 'This email address is not valid',
+                : AppLocalizations.get(7),
       ),
       onChanged: (text) {
         context.read<SignUpCubit>().onEmailChanged(text);

@@ -1,4 +1,4 @@
-import 'package:todolist/common/exports/localization.dart';
+import 'package:todolist/common/models/app_localization.dart';
 
 import '/common/utils/string_utils.dart';
 
@@ -13,9 +13,9 @@ enum SignInStatus {
       case SignInStatus.initial:
         return StringUtils.empty;
       case SignInStatus.success:
-        return AppLocalizations.get(AppLocalizations.signInStatusSuccess);
+        return AppLocalizations.get(29);
       case SignInStatus.failure:
-        return AppLocalizations.get(AppLocalizations.signInStatusFailure);
+        return AppLocalizations.get(30);
     }
   }
 }

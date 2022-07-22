@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:todolist/common/models/app_localization.dart';
 
 import '/task/models/task.dart';
 import '/user/models/user.dart';
@@ -11,5 +12,17 @@ part 'task_list_state.dart';
 enum TaskListFilter {
   all,
   completed,
-  uncompleted,
+  uncompleted;
+
+  @override
+  String toString() {
+    switch (this) {
+      case TaskListFilter.all:
+        return AppLocalizations.get(45);
+      case TaskListFilter.completed:
+        return AppLocalizations.get(46);
+      case TaskListFilter.uncompleted:
+        return AppLocalizations.get(47);
+    }
+  }
 }

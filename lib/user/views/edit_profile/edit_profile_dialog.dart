@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '/common/exports/utils.dart';
+import '/common/models/app_localization.dart';
+import '/common/utils/string_utils.dart';
 import '/user/models/gender.dart';
 import 'edit_profile_model.dart';
 
@@ -20,15 +21,14 @@ class EditProfileDialog extends StatelessWidget {
               // Gender
               TextField(
                 readOnly: true,
-                decoration: const InputDecoration(
-                  icon: Icon(Icons.visibility),
-                  suffixIcon: Icon(Icons.arrow_drop_down),
-                  border: OutlineInputBorder(),
-                  labelText: 'Gender',
+                decoration: InputDecoration(
+                  icon: const Icon(Icons.visibility),
+                  suffixIcon: const Icon(Icons.arrow_drop_down),
+                  border: const OutlineInputBorder(),
+                  labelText: AppLocalizations.get(12),
                 ),
                 controller: TextEditingController(
-                  text: state.genderInput.text?.toUpperCaseAt(0) ??
-                      StringUtils.empty,
+                  text: state.genderInput.data.toString(),
                 ),
                 onTap: () {
                   showDialog<void>(
@@ -36,13 +36,15 @@ class EditProfileDialog extends StatelessWidget {
                     builder: (_) => BlocProvider.value(
                       value: context.read<EditProfileCubit>(),
                       child: AlertDialog(
-                        title: const Text('Gender'),
+                        title: Text(
+                          AppLocalizations.get(12),
+                        ),
                         content: Column(
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             for (final gender in Gender.values)
                               RadioListTile<Gender>(
-                                title: Text(gender.name.toUpperCaseAt(0)),
+                                title: Text(gender.toString()),
                                 value: gender,
                                 groupValue: state.genderInput.data,
                                 onChanged: (gender) {
@@ -64,11 +66,11 @@ class EditProfileDialog extends StatelessWidget {
               TextField(
                 readOnly: true,
                 keyboardType: TextInputType.datetime,
-                decoration: const InputDecoration(
-                  icon: Icon(Icons.cake),
-                  suffixIcon: Icon(Icons.date_range),
-                  border: OutlineInputBorder(),
-                  labelText: 'Birthday',
+                decoration: InputDecoration(
+                  icon: const Icon(Icons.cake),
+                  suffixIcon: const Icon(Icons.date_range),
+                  border: const OutlineInputBorder(),
+                  labelText: AppLocalizations.get(16),
                 ),
                 controller: TextEditingController(
                   text: state.birthdayInput.text ?? StringUtils.empty,
@@ -94,7 +96,7 @@ class EditProfileDialog extends StatelessWidget {
                 decoration: InputDecoration(
                   icon: const Icon(Icons.phone),
                   border: const OutlineInputBorder(),
-                  labelText: 'Phone number',
+                  labelText: AppLocalizations.get(17),
                   errorText: state.phoneNumberInput.errorText,
                 ),
                 onChanged: (text) {
@@ -107,13 +109,17 @@ class EditProfileDialog extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   OutlinedButton(
-                    child: const Text('Cancel'),
+                    child: Text(
+                      AppLocalizations.get(23),
+                    ),
                     onPressed: () {
                       Navigator.pop(context);
                     },
                   ),
                   ElevatedButton(
-                    child: const Text('Save'),
+                    child: Text(
+                      AppLocalizations.get(68),
+                    ),
                     onPressed: () {
                       context.read<EditProfileCubit>().onSave();
                     },
