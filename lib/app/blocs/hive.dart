@@ -6,8 +6,10 @@ class AppHive {
   static const appTheme = 'app_theme';
   static const appLocale = 'app_locale';
 
-  static void init() async {
-    box = await Hive.openBox(name);
+  static Future<void> init() {
+    return Future.sync(() async {
+      box = await Hive.openBox(name);
+    });
   }
 
   static void save(String key, dynamic value) async {

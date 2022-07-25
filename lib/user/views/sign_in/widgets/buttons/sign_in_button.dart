@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:todolist/common/models/app_localization.dart';
-import 'package:todolist/common/models/app_routes.dart';
+import 'package:todolist/app/models/app_localization.dart';
+import 'package:todolist/app/models/app_routes.dart';
 
 import '/user/views/sign_in/cubits/sign_in_cubit.dart';
 import '/user/views/sign_in/cubits/sign_in_status.dart';

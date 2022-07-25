@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:todolist/common/models/app_localization.dart';
+import 'package:todolist/app/models/app_localization.dart';
 import 'package:todolist/user/models/gender.dart';
 import 'package:todolist/user/views/sign_up/cubits/sign_up_cubit.dart';
 

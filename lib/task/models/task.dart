@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:hive_flutter/hive_flutter.dart';
 
 part 'task_adapter.dart';
@@ -30,39 +28,6 @@ class Task extends HiveObject {
     this.completed = false,
   });
 
-  factory Task.fromJson(String source) => Task.fromMap(json.decode(source) as Map<String, dynamic>);
-
-  factory Task.fromMap(Map<String, dynamic> map) {
-    return Task(
-      id: map['id'] as int,
-      userId: map['userId'] as int,
-      content: map['content'] as String,
-      alarmTime: map['alarmTime'] != null ? DateTime.fromMillisecondsSinceEpoch(map['alarmTime'] as int) : null,
-      completed: map['completed'] as bool,
-    );
-  }
-
-  @override
-  int get hashCode {
-    return id.hashCode ^
-      userId.hashCode ^
-      content.hashCode ^
-      alarmTime.hashCode ^
-      completed.hashCode;
-  }
-
-  @override
-  bool operator ==(covariant Task other) {
-    if (identical(this, other)) return true;
-  
-    return 
-      other.id == id &&
-      other.userId == userId &&
-      other.content == content &&
-      other.alarmTime == alarmTime &&
-      other.completed == completed;
-  }
-
   Task copyWith({
     int? id,
     int? userId,
@@ -77,18 +42,6 @@ class Task extends HiveObject {
       alarmTime: alarmTime ?? this.alarmTime,
       completed: completed ?? this.completed,
     );
-  }
-
-  String toJson() => json.encode(toMap());
-
-  Map<String, dynamic> toMap() {
-    return <String, dynamic>{
-      'id': id,
-      'userId': userId,
-      'content': content,
-      'alarmTime': alarmTime?.millisecondsSinceEpoch,
-      'completed': completed,
-    };
   }
 
   @override

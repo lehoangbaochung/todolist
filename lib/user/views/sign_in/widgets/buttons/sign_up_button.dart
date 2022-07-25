@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:todolist/common/models/app_localization.dart';
-import 'package:todolist/common/models/app_routes.dart';
+import 'package:todolist/app/models/app_localization.dart';
+import 'package:todolist/app/models/app_routes.dart';
 
 class SignUpButton extends StatelessWidget {
   const SignUpButton({Key? key}) : super(key: key);

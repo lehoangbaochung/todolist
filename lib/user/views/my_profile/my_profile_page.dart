@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '/common/models/app_routes.dart';
-import '../../../common/models/app_localization.dart';
-import '/common/utils/context_utils.dart';
+import '/app/models/app_routes.dart';
+import '../../../app/models/app_localization.dart';
+import '/app/utils/context_utils.dart';
 import '/task/views/task_list/task_list_model.dart';
 import '/user/models/user.dart';
 import '/user/views/change_name/change_name_model.dart';
@@ -53,6 +53,7 @@ class MyProfilePage extends StatelessWidget {
                   children: [
                     const FlutterLogo(size: 120),
                     const SizedBox(height: 8),
+                    // Greeting
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -79,6 +80,13 @@ class MyProfilePage extends StatelessWidget {
                           icon: const Icon(Icons.edit),
                         ),
                       ],
+                    ),
+                    // Email
+                    Text(
+                      '${UserProvider.instance?.email}',
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: Theme.of(context).textTheme.caption,
                     ),
                     const SizedBox(height: 16),
                     // All tasks

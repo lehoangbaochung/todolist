@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../common/models/app_localization.dart';
-import '/common/utils/context_utils.dart';
-import '/common/utils/datetime_utils.dart';
+import '../../../app/models/app_localization.dart';
+import '/app/utils/context_utils.dart';
+import '/app/utils/datetime_utils.dart';
 import '/task/models/task.dart';
 import '/task/views/task_detail/task_detail_model.dart';
 import 'task_list_model.dart';

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '/common/models/app_localization.dart';
+import '/app/models/app_localization.dart';
 import '/task/views/task_detail/task_detail_model.dart';
 import 'task_list_model.dart';
 import 'task_list_tile.dart';

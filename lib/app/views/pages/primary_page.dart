@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:todolist/common/blocs/cubit.dart';
-import 'package:todolist/common/models/app_theme.dart';
-import 'package:todolist/common/models/app_localization.dart';
-import 'package:todolist/common/models/app_routes.dart';
+import 'package:todolist/app/blocs/cubit.dart';
+import 'package:todolist/app/models/app_theme.dart';
+import 'package:todolist/app/models/app_localization.dart';
+import 'package:todolist/app/models/app_routes.dart';
 
 import '/task/views/task_list/task_list_model.dart';
 

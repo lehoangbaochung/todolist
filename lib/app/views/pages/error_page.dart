@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:todolist/common/models/app_localization.dart';
+import 'package:todolist/app/models/app_localization.dart';
 
 class ErrorPage extends StatelessWidget {
   const ErrorPage({Key? key}) : super(key: key);

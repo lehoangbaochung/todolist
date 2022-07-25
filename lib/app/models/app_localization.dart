@@ -55,8 +55,8 @@ class AppLocalizations {
       _dictionaries[appLocale]?[id.toString()] ?? id.toString();
 
   static Future<void> init(BuildContext context) {
+    final assetBundle = DefaultAssetBundle.of(context);
     return Future.sync(() async {
-      final assetBundle = DefaultAssetBundle.of(context);
       for (final locale in AppLocale.values) {
         final filePath = 'assets/locales/${locale.name}.json';
         await assetBundle.loadString(filePath).then((jsonString) {

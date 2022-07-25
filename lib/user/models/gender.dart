@@ -1,5 +1,5 @@
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:todolist/common/models/app_localization.dart';
+import 'package:todolist/app/models/app_localization.dart';
 
 @HiveType(typeId: GenderAdapter.id)
 enum Gender {

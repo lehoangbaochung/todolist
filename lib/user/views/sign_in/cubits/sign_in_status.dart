@@ -1,6 +1,6 @@
-import 'package:todolist/common/models/app_localization.dart';
+import 'package:todolist/app/models/app_localization.dart';
 
-import '/common/utils/string_utils.dart';
+import '/app/utils/string_utils.dart';
 
 enum SignInStatus {
   initial,

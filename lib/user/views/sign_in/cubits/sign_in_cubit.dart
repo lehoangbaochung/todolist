@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '/common/utils/string_utils.dart';
+import '/app/utils/string_utils.dart';
 import '/user/models/user.dart';
 import '/user/views/sign_in/widgets/text_fields/email_text_field.dart';
 import '/user/views/sign_in/widgets/text_fields/password_text_field.dart';

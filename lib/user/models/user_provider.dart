@@ -10,9 +10,11 @@ class UserProvider {
   /// The name of [User] box.
   static const name = 'users';
 
-  static void init() async {
-    box = await Hive.openBox<User>(name);
-    instance = box.get(name, defaultValue: null);
+  static Future<void> init() {
+    return Future.sync(() async {
+      box = await Hive.openBox(name);
+      instance = box.get(name, defaultValue: null);
+    });
   }
 
   static bool signIn({

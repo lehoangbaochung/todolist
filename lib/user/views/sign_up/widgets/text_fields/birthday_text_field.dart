@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:todolist/common/models/app_localization.dart';
-import 'package:todolist/common/utils/datetime_utils.dart';
+import 'package:todolist/app/models/app_localization.dart';
+import 'package:todolist/app/utils/datetime_utils.dart';
 import 'package:todolist/user/views/sign_up/cubits/sign_up_cubit.dart';
 
 class BirthdayTextField extends StatelessWidget {

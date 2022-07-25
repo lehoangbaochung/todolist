@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../common/models/app_localization.dart';
-import '/common/utils/context_utils.dart';
+import '../../../app/models/app_localization.dart';
+import '/app/utils/context_utils.dart';
 import '/user/models/user.dart';
 import '/user/views/my_profile/my_profile_model.dart';
 import 'change_name_model.dart';

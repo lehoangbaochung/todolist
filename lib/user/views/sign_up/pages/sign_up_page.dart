@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '/common/models/app_localization.dart';
+import '/app/models/app_localization.dart';
 import '/user/views/sign_up/cubits/sign_up_cubit.dart';
 import '/user/views/sign_up/cubits/sign_up_state.dart';
 import '/user/views/sign_up/cubits/sign_up_status.dart';

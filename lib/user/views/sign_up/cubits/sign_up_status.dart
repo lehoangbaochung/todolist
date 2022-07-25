@@ -1,4 +1,4 @@
-import 'package:todolist/common/models/app_localization.dart';
+import 'package:todolist/app/models/app_localization.dart';
 
 enum SignUpStatus {
   initial,

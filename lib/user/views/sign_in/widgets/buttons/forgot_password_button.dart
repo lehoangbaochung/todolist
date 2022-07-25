@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:todolist/common/models/app_localization.dart';
+import 'package:todolist/app/models/app_localization.dart';
 
 import '/user/views/forgot_password/forgot_password_model.dart';
 
@@ -15,7 +15,15 @@ class ForgotPasswordButton extends StatelessWidget {
       onPressed: () {
         showModalBottomSheet<void>(
           context: context,
-          builder: (_) => const ForgotPasswordDialog(),
+          isScrollControlled: true,
+          builder: (_) {
+            return SingleChildScrollView(
+              child: Container(
+                padding: MediaQuery.of(context).viewInsets,
+                child: const ForgotPasswordDialog(),
+              ),
+            );
+          },
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8.0),
           ),

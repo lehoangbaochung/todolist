@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '/common/models/app_localization.dart';
+import '/app/models/app_localization.dart';
 import 'forgot_password_model.dart';
 
 /// A dialog that allows the user to find password.
@@ -23,6 +23,7 @@ class ForgotPasswordDialog extends StatelessWidget {
                 TextField(
                   maxLines: 1,
                   autofocus: true,
+                  keyboardType: TextInputType.emailAddress,
                   decoration: InputDecoration(
                     border: const OutlineInputBorder(),
                     labelText: AppLocalizations.get(2),

@@ -3,9 +3,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '/common/models/app_localization.dart';
-import '/common/utils/context_utils.dart';
-import '/common/utils/string_utils.dart';
+import '/app/models/app_localization.dart';
+import '/app/utils/context_utils.dart';
+import '/app/utils/string_utils.dart';
 import '/task/views/task_list/task_list_model.dart';
 import 'task_detail_model.dart';
 
@@ -23,7 +23,7 @@ class TaskDetailDialog extends StatelessWidget {
     return BlocBuilder<TaskDetailCubit, TaskDetailState>(
       builder: (context, state) {
         return SingleChildScrollView(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -77,6 +77,8 @@ class TaskDetailDialog extends StatelessWidget {
                             firstDate: now,
                             lastDate: DateTime(now.year + 5),
                           );
+                          // If the user didn't select a date, don't do anything.
+                          if (date == null) return;
                           // Set time
                           final time = await showTimePicker(
                             context: context,
@@ -87,6 +89,19 @@ class TaskDetailDialog extends StatelessWidget {
                               .read<TaskDetailCubit>()
                               .onAlarmChanged(date, time);
                         },
+                      ),
+                    ],
+                  ),
+                  // Notification button
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        AppLocalizations.get(77),
+                      ),
+                      Switch(
+                        value: false,
+                        onChanged: (value) {},
                       ),
                     ],
                   ),
