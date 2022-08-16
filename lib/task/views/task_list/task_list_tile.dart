@@ -68,7 +68,7 @@ class _TaskListTileState extends State<TaskListTile> {
                 create: (_) => TaskDetailCubit(
                   initialTask: widget.task,
                 ),
-                child: TaskDetailDialog(),
+                child: const TaskDetailDialog(),
               ),
             ),
             shape: RoundedRectangleBorder(

@@ -1,4 +1,4 @@
-// ignore_for_file: use_build_context_synchronously, must_be_immutable
+// ignore_for_file: use_build_context_synchronously
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,11 +10,17 @@ import '/task/views/task_list/task_list_model.dart';
 import 'task_detail_model.dart';
 
 /// A dialog that allows the user to add or edit a task with its details.
-class TaskDetailDialog extends StatelessWidget {
+class TaskDetailDialog extends StatefulWidget {
+  const TaskDetailDialog({Key? key}) : super(key: key);
+
+  @override
+  State<TaskDetailDialog> createState() => _TaskDetailDialogState();
+}
+
+class _TaskDetailDialogState extends State<TaskDetailDialog> {
+  var _enableNotification = false;
   final _contentController = TextEditingController();
-
-  TaskDetailDialog({Key? key}) : super(key: key);
-
+  
   @override
   Widget build(BuildContext context) {
     _contentController.text =
@@ -100,8 +106,12 @@ class TaskDetailDialog extends StatelessWidget {
                         AppLocalizations.get(77),
                       ),
                       Switch(
-                        value: false,
-                        onChanged: (value) {},
+                        value: _enableNotification,
+                        onChanged: (value) {
+                          setState(() {
+                            _enableNotification = value;
+                          });
+                        },
                       ),
                     ],
                   ),

@@ -88,7 +88,7 @@ class TaskListPage extends StatelessWidget {
                       value: context.read<TaskListCubit>(),
                       child: BlocProvider(
                         create: (_) => TaskDetailCubit(),
-                        child: TaskDetailDialog(),
+                        child: const TaskDetailDialog(),
                       ),
                     ),
                     shape: RoundedRectangleBorder(
