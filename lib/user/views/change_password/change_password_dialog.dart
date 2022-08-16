@@ -133,12 +133,17 @@ class ChangePasswordDialog extends StatelessWidget {
                       AppLocalizations.get(23),
                     ),
                   ),
-                  Text(state.changePasswordStatus.toString()),
+                  Text(
+                    state.changePasswordStatus.toString(),
+                  ),
                   // Save button
                   ElevatedButton(
                     onPressed: () {
                       context.read<ChangePasswordCubit>().onSubmit();
-                      if (state.changePasswordStatus ==
+                      if (context
+                              .read<ChangePasswordCubit>()
+                              .state
+                              .changePasswordStatus ==
                           ChangePasswordStatus.success) {
                         Navigator.pop(context);
                         context.showSnackBar(

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../app/models/app_localization.dart';
+import '/app/models/app_localization.dart';
 import '/app/utils/context_utils.dart';
 import '/app/utils/datetime_utils.dart';
 import '/task/models/task.dart';
@@ -79,7 +79,7 @@ class _TaskListTileState extends State<TaskListTile> {
         onLongPress: () {
           showDialog(
             context: context,
-            builder: (context) {
+            builder: (_) {
               return AlertDialog(
                 title: Text(
                   AppLocalizations.get(49),
@@ -106,6 +106,7 @@ class _TaskListTileState extends State<TaskListTile> {
                       context.showSnackBar(
                         AppLocalizations.get(66),
                       );
+                      context.read<TaskListCubit>().onRefresh();
                     },
                   ),
                 ],

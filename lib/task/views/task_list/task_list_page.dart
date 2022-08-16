@@ -27,8 +27,11 @@ class TaskListPage extends StatelessWidget {
               : ListView.builder(
                   itemCount: state.tasks.length,
                   itemBuilder: (_, index) {
-                    return TaskListTile(
-                      state.tasks.elementAt(index),
+                    return BlocProvider.value(
+                      value: context.read<TaskListCubit>(),
+                      child: TaskListTile(
+                        state.tasks.elementAt(index),
+                      ),
                     );
                   },
                   padding: const EdgeInsets.symmetric(
@@ -76,7 +79,7 @@ class TaskListPage extends StatelessWidget {
                 },
               ),
               const SizedBox(height: 8.0),
-              // Add task 
+              // Add task
               FloatingActionButton(
                 heroTag: null,
                 tooltip: AppLocalizations.get(41),

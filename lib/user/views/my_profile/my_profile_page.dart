@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '/app/models/app_routes.dart';
-import '../../../app/models/app_localization.dart';
+import '/app/models/app_localization.dart';
 import '/app/utils/context_utils.dart';
 import '/task/views/task_list/task_list_model.dart';
 import '/user/models/user.dart';
@@ -28,10 +28,30 @@ class MyProfilePage extends StatelessWidget {
             tooltip: AppLocalizations.get(31),
             icon: const Icon(Icons.logout),
             onPressed: () {
-              UserProvider.signOut();
-              Navigator.pushNamed(
-                context,
-                AppRoutes.signIn,
+              showDialog(
+                context: context,
+                builder: (_) {
+                  return AlertDialog(
+                    title: Text(AppLocalizations.get(31)),
+                    content: Text(AppLocalizations.get(79)),
+                    actions: [
+                      TextButton(
+                        child: Text(AppLocalizations.get(23)),
+                        onPressed: () => Navigator.of(context).pop(),
+                      ),
+                      TextButton(
+                        child: Text(AppLocalizations.get(31)),
+                        onPressed: () {
+                          UserProvider.signOut();
+                          Navigator.pushNamed(
+                            context,
+                            AppRoutes.signIn,
+                          );
+                        },
+                      ),
+                    ],
+                  );
+                },
               );
             },
           ),
@@ -180,7 +200,7 @@ class MyProfilePage extends StatelessWidget {
                               context: context,
                               builder: (_) => BlocProvider(
                                 create: (_) => EditProfileCubit(),
-                                child: const EditProfileDialog(),
+                                child: EditProfileDialog(),
                               ),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(8.0),
@@ -219,12 +239,12 @@ class MyProfilePage extends StatelessWidget {
                                         AppLocalizations.get(48),
                                       ),
                                       onPressed: () {
-                                        Navigator.pop(context);
-                                        Navigator.pushNamed(
+                                        UserProvider.delete();
+                                        UserProvider.signOut();
+                                        Navigator.popAndPushNamed(
                                           context,
                                           AppRoutes.signIn,
                                         );
-                                        UserProvider.signOut();
                                         context.showSnackBar(
                                           AppLocalizations.get(66),
                                         );

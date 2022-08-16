@@ -56,6 +56,36 @@ class ChangePasswordCubit extends Cubit<ChangePasswordState> {
 
   void onSubmit() {
     if (state.invalid) return;
+    if (state.oldPasswordInput.text == null) {
+      emit(
+        state.copyWith(
+          oldPasswordInput: state.oldPasswordInput.copyWith(
+            source: StringUtils.empty,
+          ),
+          changePasswordStatus: ChangePasswordStatus.failure,
+        ),
+      );
+    } 
+    if (state.newPasswordInput.text == null) {
+      emit(
+        state.copyWith(
+          newPasswordInput: state.newPasswordInput.copyWith(
+            source: StringUtils.empty,
+          ),
+          changePasswordStatus: ChangePasswordStatus.failure,
+        ),
+      );
+    }
+    if (state.renewPasswordInput.text == null) {
+      emit(
+        state.copyWith(
+          renewPasswordInput: state.renewPasswordInput.copyWith(
+            source: StringUtils.empty,
+          ),
+          changePasswordStatus: ChangePasswordStatus.failure,
+        ),
+      );
+    }
     if (UserProvider.changePassword(
       oldPassword: state.oldPasswordInput.text,
       newPassword: state.newPasswordInput.text!,
@@ -68,7 +98,7 @@ class ChangePasswordCubit extends Cubit<ChangePasswordState> {
     } else {
       emit(
         state.copyWith(
-          changePasswordStatus: ChangePasswordStatus.success,
+          changePasswordStatus: ChangePasswordStatus.failure,
         ),
       );
     }

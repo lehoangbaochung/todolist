@@ -53,19 +53,31 @@ class UserProvider {
     required String newPassword,
   }) {
     if (instance?.password != oldPassword) return false;
+    instance = instance!.copyWith(
+      password: newPassword,
+    );
     box.put(
       instance!.email,
-      instance!.copyWith(
-        password: newPassword,
-      ),
+      instance!,
     );
     return true;
   }
 
   static void edit(User user) {
+    instance = instance!.copyWith(
+      gender: user.gender,
+      birthday: user.birthday,
+      phoneNumber: user.phoneNumber,
+    );
     box.put(
       instance?.email,
-      user,
+      instance!,
+    );
+  }
+
+  static void delete() {
+    box.delete(
+      instance?.email,
     );
   }
 

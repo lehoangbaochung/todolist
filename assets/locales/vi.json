@@ -1,5 +1,5 @@
 {
-  "0": "To-do líst",
+  "0": "To-do list",
   "1": "Chào mừng đến với To-do list!",
   "2": "Email",
   "3": "Mật khẩu",
@@ -76,5 +76,7 @@
   "74": "Đổi tên",
   "75": "Xoá nhắc nhở",
   "76": "Đã thêm nhiệm vụ thành công",
-  "77": "Thông báo"
+  "77": "Thông báo",
+  "78": "Đã lưu thay đổi",
+  "79": "Bạn có chắc chắn muốn đăng xuất?"
 }

@@ -13,6 +13,6 @@ class AppHive {
   }
 
   static void save(String key, dynamic value) async {
-    return await box.put(key, value);
+    await box.put(key, value);
   }
 }

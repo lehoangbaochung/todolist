@@ -2,11 +2,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:todolist/task/views/task_list/task_list_model.dart';
 
 import '/app/models/app_localization.dart';
 import '/app/utils/context_utils.dart';
 import '/app/utils/string_utils.dart';
-import '/task/views/task_list/task_list_model.dart';
 import 'task_detail_model.dart';
 
 /// A dialog that allows the user to add or edit a task with its details.
@@ -122,7 +122,7 @@ class _TaskDetailDialogState extends State<TaskDetailDialog> {
                         : () {
                             Navigator.pop(context);
                             context.showSnackBar(
-                              AppLocalizations.get(12),
+                              AppLocalizations.get(78),
                             );
                             context.read<TaskDetailCubit>().onSave();
                             context.read<TaskListCubit>().onRefresh();

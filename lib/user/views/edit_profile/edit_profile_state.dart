@@ -8,11 +8,11 @@ class EditProfileState {
   EditProfileState(
     this.genderInput,
     this.birthdayInput,
-    this.phoneNumberInput,
+    this.phoneNumberInput, 
   );
 
-  EditProfileState.initial() :
-        genderInput = GenderInput(UserProvider.instance!.gender),
+  EditProfileState.initial()
+      : genderInput = GenderInput(UserProvider.instance!.gender),
         birthdayInput = BirthdayInput(UserProvider.instance?.birthday),
         phoneNumberInput = PhoneNumberInput(UserProvider.instance?.phoneNumber);
 

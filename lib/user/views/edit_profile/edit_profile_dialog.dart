@@ -2,15 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '/app/models/app_localization.dart';
+import '/app/utils/context_utils.dart';
 import '/app/utils/string_utils.dart';
 import '/user/models/gender.dart';
 import 'edit_profile_model.dart';
 
 class EditProfileDialog extends StatelessWidget {
-  const EditProfileDialog({Key? key}) : super(key: key);
+  final _phoneNumberController = TextEditingController();
+
+  EditProfileDialog({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    _phoneNumberController.text =
+        context.read<EditProfileCubit>().state.phoneNumberInput.text ??
+            StringUtils.empty;
     return BlocBuilder<EditProfileCubit, EditProfileState>(
       builder: (context, state) {
         return SingleChildScrollView(
@@ -93,6 +99,7 @@ class EditProfileDialog extends StatelessWidget {
               // Phone number
               TextField(
                 keyboardType: TextInputType.number,
+                controller: _phoneNumberController,
                 decoration: InputDecoration(
                   icon: const Icon(Icons.phone),
                   border: const OutlineInputBorder(),
@@ -121,7 +128,9 @@ class EditProfileDialog extends StatelessWidget {
                       AppLocalizations.get(68),
                     ),
                     onPressed: () {
+                      Navigator.pop(context);
                       context.read<EditProfileCubit>().onSave();
+                      context.showSnackBar(AppLocalizations.get(78));
                     },
                   ),
                 ],
